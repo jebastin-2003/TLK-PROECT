@@ -111,11 +111,7 @@ export default function Contact() {
         }
       `}</style>
 
-      {/* Header Section */}
       <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 48px' }}>
-        <span style={{ color: '#dc2626', fontFamily: 'monospace', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-          visit the
-        </span>
         <h2 style={{ fontSize: '2.5rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', color: '#fff', marginTop: '8px' }}>
           <span className="highlight-red">C</span>ONNECT & TRAIN
         </h2>
@@ -125,7 +121,6 @@ export default function Contact() {
       </div>
 
       <div className="contact-grid">
-        {/* Card 1: WhatsApp Chat */}
         <div className="card-custom">
           <div>
             <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>💬</div>
@@ -146,7 +141,6 @@ export default function Contact() {
           </a>
         </div>
 
-        {/* Card 2: Direct Call & Gmail */}
         <div className="card-custom">
           <div>
             <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>📞</div>
@@ -170,14 +164,12 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Card 3: Location & Interactive Mini Map */}
         <div className="card-custom">
           <div>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, textTransform: 'uppercase', color: '#fff', marginBottom: '12px' }}>
               📍 Our Location
             </h3>
             
-            {/* Small Map View Container */}
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
               <div className="map-container">
                 <iframe

@@ -9,9 +9,10 @@ export default function Hero() {
         minHeight: '85vh',
         width: '100%',
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '120px 8% 100px 8%', // Balanced top and bottom padding for more gap
+        padding: '120px 8% 100px 8%',
         background: '#0a0a0a', 
         overflow: 'hidden',
         color: '#ffffff',
@@ -20,7 +21,22 @@ export default function Hero() {
         boxShadow: '0 0 20px rgba(220, 38, 38, 0.3)',
       }}
     >
-      {/* Background Logo Image Tag */}
+      <style>{`
+        @media (max-width: 900px) {
+          .hero-section {
+            padding: 80px 20px 60px 20px !important;
+            justify-content: center !important;
+            text-align: center !important;
+          }
+          .hero-content {
+            margin: 0 auto 32px auto !important;
+          }
+          .hero-buttons {
+            justify-content: center !important;
+          }
+        }
+      `}</style>
+
       <img 
         src="/images/main%20logo.jpg" 
         alt="Gym Background Logo" 
@@ -37,25 +53,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Main Content (Left Side) */}
-      <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
-        <span 
-          className="section-tag" 
-          style={{ 
-            background: 'rgba(153, 27, 27, 0.25)', 
-            color: '#f87171',
-            padding: '6px 12px', 
-            border: '1px solid rgba(153, 27, 27, 0.5)',
-            borderRadius: '4px',
-            fontSize: '0.85rem',
-            letterSpacing: '1px',
-            textTransform: 'uppercase'
-          }}
-        >
-            NEW ERA OF FITNESS
-        </span>
-
-        {/* Main Heading */}
+      <div className="hero-content" style={{ maxWidth: '600px', position: 'relative', zIndex: 2, marginBottom: '32px' }}>
         <h1 
           style={{ 
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
@@ -63,15 +61,12 @@ export default function Hero() {
             fontStyle: 'italic', 
             textTransform: 'uppercase', 
             lineHeight: 1.1, 
-            marginTop: '20px',
             marginBottom: '20px'
           }}
         >
-          {/* Row 1: TLK UNISEX */}
           <span style={{ color: '#dc2626' }}>TLK</span>{' '}
           <span style={{ color: '#ffffff' }}>UNISEX</span>
           <br />
-          {/* Row 2: FITNESS ZONE */}
           <span style={{ color: '#ffffff' }}>FITNESS ZONE</span>
         </h1>
 
@@ -81,14 +76,14 @@ export default function Hero() {
           <span style={{ color: '#ffffff', fontWeight: 'bold' }}>UNISEX FITNESS ZONE</span>, we combine elite athletic conditioning, high-intensity strength training, and strict discipline for total physical transformation.
         </p>
 
-        <div style={{ display: 'flex', gap: '16px', marginTop: '32px', flexWrap: 'wrap' }}>
+        {/* Buttons */}
+        <div className="hero-buttons" style={{ display: 'flex', gap: '16px', marginTop: '32px', flexWrap: 'wrap' }}>
           <a href="#contact" className="btn-red">Start Your Journey &rarr;</a>
-          <a href="#programs" className="btn-outline">Explore Programs &rarr;</a>
+          <a href="#membership" className="btn-outline">Explore Programs &rarr;</a>
         </div>
       </div>
 
-      {/* Hero Visual Card with Direct Image Tag (Right Side) */}
-      <div style={{ position: 'relative', zIndex: 2, marginTop: '32px', width: '100%', maxWidth: '420px' }}>
+      <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '420px', margin: '0 auto' }}>
         <div 
           style={{ 
             height: '420px', 

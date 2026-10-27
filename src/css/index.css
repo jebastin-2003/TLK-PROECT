@@ -9,6 +9,7 @@ body {
   color: #e5e7eb;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -83,18 +84,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 32px;
+  padding: 20px 32px;
   background-color: #0b0b0b;
   border-bottom: 1px solid #262626;
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
-  font-size: 0.875rem;
+  gap: 24px;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -105,6 +107,20 @@ body {
 }
 .nav-links a:hover {
   color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav-links {
+    gap: 12px;
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .hero-section {
@@ -132,33 +148,6 @@ body {
 }
 @media (min-width: 1024px) {
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
-}
-
-.schedule-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 32px;
-  border-bottom: 1px solid #262626;
-  padding-bottom: 16px;
-}
-
-.tab-btn {
-  padding: 12px 24px;
-  font-weight: 700;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: #171717;
-  color: #a3a3a3;
-  transition: all 0.2s;
-}
-.tab-btn.active {
-  background-color: #dc2626;
-  color: #ffffff;
-  border-color: #dc2626;
 }
 
 .form-input {
