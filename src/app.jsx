@@ -7,10 +7,14 @@ import Schedule from './components/schedule.jsx';
 import Contact from './components/contact.jsx';
 import FloatingSocials from './components/FloatingSocials.jsx';
 import Footer from './components/footer.jsx';
+import WelcomePopup from './components/WelcomePopup.jsx'; // Import here
 
 export default function App() {
   return (
     <div>
+      {/* Welcome Popup on Load */}
+      <WelcomePopup />
+
       <Navbar />
       <Hero />
       <EventsAndHighlights />

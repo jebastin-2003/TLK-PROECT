@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const scheduleData = [
   { 
@@ -34,6 +34,75 @@ const scheduleData = [
 ];
 
 export default function Schedule() {
+  const cardRefs = useRef([]);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    // 1. Intersection Observer for fade/scale animation
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const handleIntersect = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-in-active');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    // 2. Automatic Auto-Slide for Mobile View
+    let intervalId = null;
+    const grid = gridRef.current;
+
+    const startAutoScroll = () => {
+      if (window.innerWidth <= 600 && grid) {
+        intervalId = setInterval(() => {
+          const cardWidth = grid.querySelector('.schedule-card')?.offsetWidth || 280;
+          const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+          
+          if (grid.scrollLeft >= maxScrollLeft - 10) {
+            grid.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            grid.scrollBy({ left: cardWidth + 16, behavior: 'smooth' });
+          }
+        }, 3000); // Ovoru 3 seconds-kum automatic-a move aagum
+      }
+    };
+
+    startAutoScroll();
+
+    // Pause auto-scroll when user manually interacts/swipes
+    const handleTouchStart = () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+
+    if (grid) {
+      grid.addEventListener('touchstart', handleTouchStart);
+      grid.addEventListener('mousedown', handleTouchStart);
+    }
+
+    return () => {
+      cardRefs.current.forEach((card) => {
+        if (card) observer.unobserve(card);
+      });
+      if (intervalId) clearInterval(intervalId);
+      if (grid) {
+        grid.removeEventListener('touchstart', handleTouchStart);
+        grid.removeEventListener('mousedown', handleTouchStart);
+      }
+    };
+  }, []);
+
   return (
     <section id="schedule" className="schedule-section">
       <style>{`
@@ -46,6 +115,8 @@ export default function Schedule() {
           border-bottom: 2px solid #dc2626;
           box-shadow: 0 0 25px rgba(220, 38, 38, 0.35);
           position: relative;
+          overflow: hidden;
+          box-sizing: border-box;
         }
         .schedule-header {
           margin-bottom: 56px;
@@ -64,6 +135,8 @@ export default function Schedule() {
           color: #dc2626;
           text-shadow: 0 0 12px rgba(220, 38, 38, 0.7);
         }
+        
+        /* PC & Laptop: 3 columns grid */
         .schedule-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -71,17 +144,51 @@ export default function Schedule() {
           max-width: 1100px;
           margin: 0 auto;
         }
+
         @media (max-width: 900px) {
           .schedule-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 18px;
           }
         }
+
+        /* Mobile View: Horizontal Smooth Auto/Manual Scroll Snap */
         @media (max-width: 600px) {
+          .schedule-section {
+            padding: 80px 0;
+          }
+          .schedule-header {
+            padding: 0 24px;
+            margin-bottom: 35px;
+          }
           .schedule-grid {
-            grid-template-columns: 1fr;
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 16px;
+            padding: 10px 24px 30px 24px;
+            justify-content: flex-start;
+            scrollbar-width: none;
+          }
+          .schedule-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .schedule-card {
+            min-width: 82vw;
+            max-width: 82vw;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            opacity: 0.5;
+            transform: scale(0.95);
+            transition: transform 0.4s ease, opacity 0.4s ease, border-color 0.4s ease;
+          }
+          .schedule-card.slide-in-active {
+            opacity: 1;
+            transform: scale(1);
           }
         }
+
         .schedule-card {
           background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.95));
           border: 1px solid rgba(255, 255, 255, 0.25);
@@ -171,12 +278,17 @@ export default function Schedule() {
         </h2>
       </div>
 
-      <div className="schedule-grid">
+      <div className="schedule-grid" ref={gridRef}>
         {scheduleData.map((item, index) => {
           const firstLetter = item.day.charAt(0);
           const restOfWord = item.day.slice(1);
           return (
-            <div key={index} className="schedule-card">
+            <div 
+              key={index} 
+              className="schedule-card"
+              ref={(el) => (cardRefs.current[index] = el)}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
               <h3 className="schedule-day">
                 <span className="highlight-red">{firstLetter}</span>
                 {restOfWord}
