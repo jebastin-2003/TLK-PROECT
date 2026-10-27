@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/tlk_unisex_fitness_zone?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw==";
 
@@ -17,6 +17,41 @@ const videosList = [
 ];
 
 export default function EventsAndHighlights() {
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3 // Video 30% screen-la theriyum pothu play aagum
+    };
+
+    const handleIntersect = (entries, observer) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Auto-play policy fallback handling for mobile browsers
+          });
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, []);
+
   return (
     <section id="events-highlights" className="events-section">
       <style>{`
@@ -132,6 +167,7 @@ export default function EventsAndHighlights() {
                 src={item.imgSrc}
                 alt={`Event Photo ${item.id}`}
                 className="fitted-content"
+                loading="lazy"
               />
             </div>
           </div>
@@ -139,15 +175,16 @@ export default function EventsAndHighlights() {
       </div>
 
       <div className="grid-4-columns">
-        {videosList.map((item) => (
+        {videosList.map((item, index) => (
           <div key={item.id} className="media-card">
             <div className="media-box-fitted">
               <video
+                ref={(el) => (videoRefs.current[index] = el)}
                 src={item.videoSrc}
-                autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="fitted-content"
               />
             </div>
