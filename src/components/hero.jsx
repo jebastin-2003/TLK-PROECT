@@ -22,17 +22,58 @@ export default function Hero() {
       }}
     >
       <style>{`
+        /* Small Red Glowing Call Button Style */
+        .btn-call-glow-small {
+          background-color: rgba(220, 38, 38, 0.15);
+          color: #ffffff;
+          border: 1.5px solid #dc2626;
+          padding: 8px 16px;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 0.8rem;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          box-shadow: 0 0 10px rgba(220, 38, 38, 0.4), inset 0 0 6px rgba(220, 38, 38, 0.2);
+          transition: all 0.3s ease-in-out;
+          margin: 0 auto;
+        }
+        .btn-call-glow-small:hover {
+          background-color: rgba(220, 38, 38, 0.3);
+          border-color: #ef4444;
+          box-shadow: 0 0 18px rgba(220, 38, 38, 0.7);
+          transform: translateY(-2px);
+        }
+
+        /* Container for Main Button + Centered Small Call Button */
+        .hero-action-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+          margin-top: 32px;
+        }
+
+        .action-button-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
         @media (max-width: 900px) {
           .hero-section {
             padding: 80px 20px 60px 20px !important;
-            justify-content: center !important;
-            text-align: center !important;
+            justifyContent: center !important;
+            textAlign: center !important;
           }
           .hero-content {
             margin: 0 auto 32px auto !important;
           }
-          .hero-buttons {
-            justify-content: center !important;
+          .hero-action-container {
+            align-items: center !important;
           }
         }
       `}</style>
@@ -76,10 +117,16 @@ export default function Hero() {
           <span style={{ color: '#ffffff', fontWeight: 'bold' }}>UNISEX FITNESS ZONE</span>, we combine elite athletic conditioning, high-intensity strength training, and strict discipline for total physical transformation.
         </p>
 
-        {/* Buttons */}
-        <div className="hero-buttons" style={{ display: 'flex', gap: '16px', marginTop: '32px', flexWrap: 'wrap' }}>
-          <a href="#contact" className="btn-red">Start Your Journey &rarr;</a>
-          <a href="#membership" className="btn-outline">Explore Programs &rarr;</a>
+        {/* Action Container: Start Your Journey and Centered Small Call Us Button underneath */}
+        <div className="hero-action-container">
+          <div className="action-button-wrapper">
+            <a href="#contact" className="btn-red">Start Your Journey &rarr;</a>
+            
+            {/* Small size centered Call Us button under Start Your Journey */}
+            <a href="tel:+919342146824" className="btn-call-glow-small">
+              <span>📞</span> Call Us: +91 9342146824
+            </a>
+          </div>
         </div>
       </div>
 

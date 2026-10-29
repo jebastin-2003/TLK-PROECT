@@ -66,61 +66,26 @@ export default function Membership() {
   const renderFormattedHeading = (text) => {
     if (!text) return null;
 
-    if (text === "School Students") {
+    if (text === "MEMBERSHIP PLANS") {
       return (
         <>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>S</span>
-          <span style={{ color: '#ffffff' }}>chool </span>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>S</span>
-          <span style={{ color: '#ffffff' }}>tudents</span>
-        </>
-      );
-    }
-
-    if (text === "College Students") {
-      return (
-        <>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>C</span>
-          <span style={{ color: '#ffffff' }}>ollege </span>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>S</span>
-          <span style={{ color: '#ffffff' }}>tudents</span>
-        </>
-      );
-    }
-
-    if (text === "STRENGTH TRAINING") {
-      return (
-        <>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>S</span>
-          <span style={{ color: '#ffffff' }}>TRENGTH </span>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>T</span>
-          <span style={{ color: '#ffffff' }}>RAINING</span>
-        </>
-      );
-    }
-
-    if (text === "CARDIO + STRENGTH TRAINING") {
-      return (
-        <>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>C</span>
-          <span style={{ color: '#ffffff' }}>ARDIO + </span>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>S</span>
-          <span style={{ color: '#ffffff' }}>TRENGTH </span>
-          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>T</span>
-          <span style={{ color: '#ffffff' }}>RAINING</span>
+          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>M</span>
+          <span style={{ color: '#ffffff' }}>EMBERSHIP </span>
+          <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>P</span>
+          <span style={{ color: '#ffffff' }}>LANS</span>
         </>
       );
     }
 
     return (
-      <>
-        <span style={{ color: '#dc2626', textShadow: '0 0 10px rgba(220, 38, 38, 0.6)' }}>
-          {text.charAt(0)}
-        </span>
-        <span style={{ color: '#ffffff' }}>
-          {text.slice(1)}
-        </span>
-      </>
+      <span 
+        style={{ 
+          color: '#ffffff', 
+          letterSpacing: '0.05em'
+        }}
+      >
+        {text}
+      </span>
     );
   };
 
@@ -181,6 +146,17 @@ export default function Membership() {
           justify-content: center;
           gap: 4px;
         }
+
+        .plan-list-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 8px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .plan-list-row:last-child {
+          border-bottom: none;
+        }
         
         .btn-book-now {
           display: block;
@@ -192,22 +168,22 @@ export default function Membership() {
           text-transform: uppercase;
           letter-spacing: 0.08em;
           text-decoration: none;
-          color: #ffffff;
-          background-color: #dc2626;
-          border: 2px solid #dc2626;
+          color: #fca5a5;
+          background-color: rgba(153, 27, 27, 0.35);
+          border: 2px solid rgba(220, 38, 38, 0.5);
           border-radius: 6px;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
-          box-shadow: 0 0 18px rgba(220, 38, 38, 0.7), 0 0 8px rgba(220, 38, 38, 0.4);
+          box-shadow: 0 0 12px rgba(220, 38, 38, 0.2);
           box-sizing: border-box;
           margin-top: 20px;
         }
 
         .btn-book-now:hover, .btn-book-now:focus, .btn-book-now:active {
-          background-color: #ef4444;
-          border-color: #ef4444;
+          background-color: rgba(185, 28, 28, 0.55);
+          border-color: #dc2626;
           color: #ffffff;
-          box-shadow: 0 0 30px rgba(239, 68, 68, 0.9), 0 0 15px rgba(220, 38, 38, 0.8);
+          box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
           transform: translateY(-2px);
         }
 
@@ -251,22 +227,24 @@ export default function Membership() {
             key={idx} 
             className="card-center-content membership-scroll-item"
             style={{ 
-              border: '2px solid rgba(255, 255, 255, 0.85)',
+              border: '1.5px solid rgba(209, 213, 219, 0.4)',
               position: 'relative', 
               backgroundColor: 'rgba(23, 23, 23, 0.85)',
-              padding: '36px 24px',
+              padding: '28px 20px',
               borderRadius: '12px',
               boxSizing: 'border-box',
               minHeight: '230px',
-              boxShadow: '0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.08)'
+              boxShadow: '0 0 15px rgba(209, 213, 219, 0.12), inset 0 0 8px rgba(255, 255, 255, 0.03)'
             }}
           >
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', margin: '0 0 10px 0', textAlign: 'center', width: '100%' }}>
-              <span style={{ marginRight: '6px' }}>🎓</span>
-              {renderFormattedHeading(plan.name)}
-            </h3>
+            {/* Silver-Grey Tone Underline for School & College Students */}
+            <div style={{ width: '100%', borderBottom: '2px solid rgba(209, 213, 219, 0.4)', paddingBottom: '16px', marginBottom: '22px', textAlign: 'center', boxShadow: '0 4px 10px rgba(209, 213, 219, 0.15)' }}>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', margin: 0 }}>
+                <span style={{ marginRight: '6px' }}>🎓</span>
+                {renderFormattedHeading(plan.name)}
+              </h3>
+            </div>
 
-            {/* Exact Mid Center Stacked Price & Month */}
             <div className="student-card-body">
               <div className="student-price-display">
                 <span style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{plan.price}</span>
@@ -281,35 +259,34 @@ export default function Membership() {
         ))}
 
         {/* Strength Training Table */}
-        <div className="card-center-content membership-scroll-item" style={{ backgroundColor: 'rgba(23, 23, 23, 0.85)', border: '2px solid rgba(255, 255, 255, 0.85)', borderRadius: '12px', padding: '28px 20px', boxShadow: '0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.08)', boxSizing: 'border-box' }}>
+        <div 
+          className="card-center-content membership-scroll-item" 
+          style={{ 
+            backgroundColor: 'rgba(23, 23, 23, 0.85)', 
+            border: '1.5px solid rgba(209, 213, 219, 0.4)', 
+            borderRadius: '12px', 
+            padding: '28px 20px', 
+            boxShadow: '0 0 15px rgba(209, 213, 219, 0.12), inset 0 0 8px rgba(255, 255, 255, 0.03)', 
+            boxSizing: 'border-box' 
+          }}
+        >
           <div style={{ width: '100%' }}>
-            <div style={{ borderBottom: '2px solid #dc2626', paddingBottom: '16px', marginBottom: '22px', textAlign: 'center' }}>
+            {/* Silver-Grey Tone Underline for Strength Training */}
+            <div style={{ borderBottom: '2px solid rgba(209, 213, 219, 0.4)', paddingBottom: '16px', marginBottom: '22px', textAlign: 'center', boxShadow: '0 4px 10px rgba(209, 213, 219, 0.15)' }}>
               <h3 style={{ fontSize: '1.3rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', margin: 0 }}>
                 <span style={{ marginRight: '6px' }}>🏋️‍♂️</span>
                 {renderFormattedHeading("STRENGTH TRAINING")}
               </h3>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {strengthTrainingPlans.map((item, i) => (
-                <div 
-                  key={i} 
-                  style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center', 
-                    padding: '12px 16px', 
-                    background: 'rgba(15, 15, 15, 0.6)', 
-                    border: '2px solid #dc2626', 
-                    borderRadius: '8px', 
-                    boxShadow: '0 0 10px rgba(220, 38, 38, 0.25)' 
-                  }}
-                >
+                <div key={i} className="plan-list-row">
                   <div style={{ textAlign: 'left' }}>
-                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '0.9rem' }}>{item.period}</span>
-                    {item.badge && <span style={{ marginLeft: '8px', fontSize: '10px', background: '#dc2626', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800, display: 'inline-block' }}>{item.badge}</span>}
+                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem' }}>{item.period}</span>
+                    {item.badge && <span style={{ marginLeft: '8px', fontSize: '10px', background: '#dc2626', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800, display: 'inline-block', boxShadow: '0 0 8px rgba(220, 38, 38, 0.4)' }}>{item.badge}</span>}
                   </div>
-                  <span style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 900 }}>{item.price}</span>
+                  <span style={{ color: '#ffffff', fontSize: '1.15rem', fontWeight: 900 }}>{item.price}</span>
                 </div>
               ))}
             </div>
@@ -321,35 +298,34 @@ export default function Membership() {
         </div>
 
         {/* Cardio + Strength Training Table */}
-        <div className="card-center-content membership-scroll-item" style={{ backgroundColor: 'rgba(23, 23, 23, 0.85)', border: '2px solid rgba(255, 255, 255, 0.85)', borderRadius: '12px', padding: '28px 20px', boxShadow: '0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.08)', boxSizing: 'border-box' }}>
+        <div 
+          className="card-center-content membership-scroll-item" 
+          style={{ 
+            backgroundColor: 'rgba(23, 23, 23, 0.85)', 
+            border: '1.5px solid rgba(209, 213, 219, 0.4)', 
+            borderRadius: '12px', 
+            padding: '28px 20px', 
+            boxShadow: '0 0 15px rgba(209, 213, 219, 0.12), inset 0 0 8px rgba(255, 255, 255, 0.03)', 
+            boxSizing: 'border-box' 
+          }}
+        >
           <div style={{ width: '100%' }}>
-            <div style={{ borderBottom: '2px solid #dc2626', paddingBottom: '16px', marginBottom: '22px', textAlign: 'center' }}>
+            {/* Silver-Grey Tone Underline for Cardio + Strength */}
+            <div style={{ borderBottom: '2px solid rgba(209, 213, 219, 0.4)', paddingBottom: '16px', marginBottom: '22px', textAlign: 'center', boxShadow: '0 4px 10px rgba(209, 213, 219, 0.15)' }}>
               <h3 style={{ fontSize: '1.2rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', margin: 0 }}>
                 <span style={{ marginRight: '6px' }}>❤️</span>
                 {renderFormattedHeading("CARDIO + STRENGTH TRAINING")}
               </h3>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {cardioStrengthPlans.map((item, i) => (
-                <div 
-                  key={i} 
-                  style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center', 
-                    padding: '12px 16px', 
-                    background: 'rgba(15, 15, 15, 0.6)', 
-                    border: '2px solid #dc2626', 
-                    borderRadius: '8px', 
-                    boxShadow: '0 0 10px rgba(220, 38, 38, 0.25)' 
-                  }}
-                >
+                <div key={i} className="plan-list-row">
                   <div style={{ textAlign: 'left' }}>
-                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '0.9rem' }}>{item.period}</span>
-                    {item.badge && <span style={{ marginLeft: '8px', fontSize: '10px', background: '#dc2626', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800, display: 'inline-block' }}>{item.badge}</span>}
+                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem' }}>{item.period}</span>
+                    {item.badge && <span style={{ marginLeft: '8px', fontSize: '10px', background: '#dc2626', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 800, display: 'inline-block', boxShadow: '0 0 8px rgba(220, 38, 38, 0.4)' }}>{item.badge}</span>}
                   </div>
-                  <span style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 900 }}>{item.price}</span>
+                  <span style={{ color: '#ffffff', fontSize: '1.15rem', fontWeight: 900 }}>{item.price}</span>
                 </div>
               ))}
             </div>

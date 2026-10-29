@@ -134,7 +134,7 @@ export default function Navbar() {
             display: grid;
             grid-template-columns: auto auto;
             justify-content: space-between;
-            align-items: end; /* Ensures items anchor precisely to the bottom of the navbar area */
+            align-items: end;
           }
 
           .nav-brand-container {
@@ -211,8 +211,8 @@ export default function Navbar() {
       {/* PC & Laptop Desktop Links */}
       <div className="nav-links-desktop">
         <a href="#">HOME</a>
-        <a href="#events-highlights">EVENTS & HIGHLIGHTS</a>
-        <a href="#schedule">SCHEDULE</a>
+        <a href="#events-highlights">GYM VIEW</a>
+        <a href="#schedule">REVIEWS</a>
         <a href="#membership">MEMBERSHIP</a>
         <a href="#contact">CONTACT</a>
         <a href="#contact" className="btn-red" style={{ padding: '8px 20px', fontSize: '0.8rem', marginLeft: '12px' }}>
@@ -227,12 +227,12 @@ export default function Navbar() {
         <div style={{ transform: isOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} className="hamburger-line"></div>
       </button>
 
-      {/* Android Dropdown Menu */}
+      {/* Android Dropdown Menu - Updated Schedule to Reviews */}
       {isOpen && (
         <div className="mobile-menu">
           <a href="#" onClick={closeMenu}>HOME</a>
-          <a href="#events-highlights" onClick={closeMenu}>EVENTS & HIGHLIGHTS</a>
-          <a href="#schedule" onClick={closeMenu}>SCHEDULE</a>
+          <a href="#events-highlights" onClick={closeMenu}>GYM VIEW</a>
+          <a href="#schedule" onClick={closeMenu}>REVIEWS</a>
           <a href="#membership" onClick={closeMenu}>MEMBERSHIP</a>
           <a href="#contact" onClick={closeMenu}>CONTACT</a>
           <a href="#contact" className="btn-red" onClick={closeMenu} style={{ padding: '12px', fontSize: '0.85rem', width: '100%', textAlign: 'center', marginTop: '8px' }}>

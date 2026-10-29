@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './components/novbar.jsx';
 import Hero from './components/hero.jsx';
-import EventsAndHighlights from './components/events&highlights.jsx';
+import EventsAndHighlights from './components/gymview.jsx';
 import Membership from './components/memberships.jsx';
-import Schedule from './components/schedule.jsx';
+import Schedule from './components/reviews.jsx';
 import Contact from './components/contact.jsx';
 import FloatingSocials from './components/FloatingSocials.jsx';
 import Footer from './components/footer.jsx';
-import WelcomePopup from './components/WelcomePopup.jsx'; // Import here
+import WelcomePopup from './components/WelcomePopup.jsx';
 
 export default function App() {
   return (
